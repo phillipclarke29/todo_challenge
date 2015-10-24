@@ -1,7 +1,12 @@
-describe('Todo List', function() {
-  it('has a title', function() {
-    browser.get('http://localhost:8080');
+describe('To Do List', function() {
 
-    expect(browser.getTitle()).toEqual('To do list');
-  });
+  beforeEach(function(){
+      browser.get('http://localhost:8080')
+    })
+
+    it('has a title', function() {
+          expect(browser.getTitle()).toEqual('Github user search');
+        });
+
+
 });

@@ -23,8 +23,8 @@ describe('To Do List', function() {
     element(by.css('[value="add"]')).click();
 
     var todos = element.all(by.repeater('todo in todoList.todos'));
-    expect(todos.last().getText()).toEqual('This is a new todo');
-    expect(todos.get(2).getText()).toEqual('This is a new todo');
+    expect(todos.last().getText()).toEqual('This is a new todo Update');
+    expect(todos.get(2).getText()).toEqual('This is a new todo Update');
   });
 
   it('it allows you to mark a todo as complete', function(){
@@ -36,6 +36,19 @@ describe('To Do List', function() {
     var completedAmount = element.all(by.css('.complete-true'));
     expect(completedAmount.count()).toEqual(1);
     expect(completedAmount.getText()).toEqual(['This is a new todo']);
+  });
+
+  it('it allows you to update a todo', function(){
+
+    element(by.model('todoList.todoText')).sendKeys('This is a new todo');
+    element(by.css('[value="add"]')).click();
+    var todos = element.all(by.repeater('todo in todoList.todos'));
+    var todo = todos.get(2)
+    console.log(todos);
+    todo.element(by.button("Submit"));
+    element(by.model('todoList.todo.update')).sendKeys('This is an updated todo');
+    element(by.css('[value="add"]')).click();
+    expect(todos.last().getText()).toEqual('This is an updated todo Update');
 
   });
 

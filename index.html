@@ -11,13 +11,23 @@
     <script src="js/todo.js"></script>
   </head>
   <body class="container">
+  <div ng-controller="TodoListController as todoList">
   <div class= "jumbotron">
   <h1>My Todo List </h1>
-     <div ng-controller="TodoListController as todoList">
-       <span>total todos = {{todoList.total()}}</span>
-  </div>
+   <span>Total Todos = {{todoList.total()}}</span>
+   <form ng-submit="todoList.addTodo()">
+     <input type="text" ng-model="todoList.todoText"  size="30"
 
-       </form>
-     </div>
+            placeholder="add new todo here">
+     <input class="btn-primary" type="submit" value="add">
+   </form>
+ </div>
+   <li ng-repeat="todo in todoList.todos">
+     <input type="checkbox" ng-model="todo.complete">
+     <span class="done-{{todo.complete}}">{{todo.text}}</span>
+   </li>
+ </div>
+ </div>
+
    </body>
   </html>

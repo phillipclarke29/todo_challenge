@@ -1,4 +1,4 @@
-describe('todoListController', function() {
+describe('TodoListController', function() {
   beforeEach(module('myApp'));
 
   var todoList;
@@ -8,11 +8,11 @@ describe('todoListController', function() {
 
 
   beforeEach(inject(function($controller) {
-    todoList = $controller('todoListController');
+    todoList = $controller('TodoListController');
   }));
 
-  it('initialises with an empty list of todos', function() {
-    expect(todoList).toBeUndefined();
+  it('displays the number of todos', function() {
+    expect(todoList.todos.length).toEqual(2);
   });
 
 });
@@ -23,7 +23,7 @@ describe("when adding todos", function(){
   ];
 
   it('displays the number of todos', function(){
-    expect(todoList.totalTodos).toEqual(1);
+    expect(todoList.todos.length).toEqual(3);
 
   });
 

@@ -1,4 +1,4 @@
-angular.module('myApp', ['ui.bootstrap'])
+angular.module('myApp', [])
 .controller('TodoListController', function() {
    var todoList = this;
    todoList.todos = [
@@ -15,16 +15,8 @@ angular.module('myApp', ['ui.bootstrap'])
     return todoList.todos.length
   };
 
-  todoList.open = function() {
-    $scope.showModal = true;
-  };
-
-  todoList.ok = function() {
-    $scope.showModal = false;
-  };
-
-  todoList.cancel = function() {
-    $scope.showModal = false;
-  };
+  todoList.update = function(todo, newText){
+    todo.text = newText;
+ }
 
  });

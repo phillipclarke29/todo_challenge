@@ -19,7 +19,7 @@ describe('To Do List', function() {
 
   it('it allows you to add a new todo', function(){
 
-    element(by.model('todoList.todoText')).sendKeys('This is a new todo');
+    element(by.model('todoList.todoText')).sendKeys('This is a new todo Update');
     element(by.css('[value="add"]')).click();
 
     var todos = element.all(by.repeater('todo in todoList.todos'));
@@ -44,10 +44,9 @@ describe('To Do List', function() {
     element(by.css('[value="add"]')).click();
     var todos = element.all(by.repeater('todo in todoList.todos'));
     var todo = todos.get(2)
-    console.log(todos);
-    todo.element(by.button("Submit"));
-    element(by.model('todoList.todo.update')).sendKeys('This is an updated todo');
-    element(by.css('[value="add"]')).click();
+    element(by.css('[value="update"]')).click();
+    element(by.model('newText')).sendKeys('This is an updated todo');
+    element(by.css('[value="update"]')).click();
     expect(todos.last().getText()).toEqual('This is an updated todo Update');
 
   });

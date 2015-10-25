@@ -6,45 +6,53 @@
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="bower_components/bootstrap/custom.css">
     <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
-     <script src="js/angular-ui-bootstrap-modal.js"></script>
     <script src="js/todo.js"></script>
   </head>
   <body class="container">
   <div ng-controller="TodoListController as todoList">
   <div class= "jumbotron">
-  <h1>My Todo List </h1>
-   <span>Total Todos = {{todoList.total()}}</span>
-   <form ng-submit="todoList.addTodo()">
-     <input type="text" ng-model="todoList.todoText"  size="30"
+    <h1>My Todo List </h1>
+    <div id="total">
+     <span>Total Todos = {{todoList.total()}}</span>
+    </div>
+     <form ng-submit="todoList.addTodo()">
+       <input type="text" ng-model="todoList.todoText"  size="30"
 
-            placeholder="add new todo here">
-     <input class="btn-primary" type="submit" value="add">
-   </form>
- </div>
+              placeholder="add new todo here">
+       <input class="btn-primary" type="submit" value="add">
+     </form>
+   </div>
+   <div class="row">
+       <div class="col-md-4">My Todos</div>
+    <div class="col-md-9 col-md-push-10">
+      <div class="btn-group">
+         <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+           Filter <span class="caret"></span>
+         </button>
+           <ul class="dropdown-menu">
+             <li><a href="#">Active</a></li>
+             <li><a href="#">Complete</a></li>
+             <li><a href="#">Archive</a></li>
+             <li role="separator" class="divider"></li>
+             <li><a href="#">Mark all as Complete</a></li>
+           </ul>
+       </div>
+    </div>
+  </div>
    <li ng-repeat="todo in todoList.todos">
      <div id='listItem'>
-     <input type="checkbox" ng-model="todo.complete">
-     <span class="complete-{{todo.complete}}">{{todo.text}}</span>
-     <button type="button" ng-model="todoList.open()" class="btn btn-info btn-xs">Update</button>
+       <input type="checkbox" ng-model="todo.complete">
+       <span class="complete-{{todo.complete}}">{{todo.text}}</span>
+     <td>
+       <div ng-show="!showUpdate"><input type="button" class="btn-primary btn-xs" value="update" ng-click="newText = todo.text; showUpdate = true"></div>
+       <div ng-show="showUpdate" ><input class="text" ng-model="newText"> <input type="button" class="btn-primary btn-xs" value="update" ng-click="todoList.update(todo, newText); showUpdate = false;"></div>
+    </td>
    </div>
    </li>
  </div>
- </div>
-
- <div modal="showModal" close="cancel()">
-    <div class="modal-header">
-        <h4>Modal Dialog</h4>
-    </div>
-    <div class="modal-body">
-        <p>Example paragraph with some text.</p>
-    </div>
-    <div class="modal-footer">
-      <button class="btn btn-success" ng-click="ok()">Okay</button>
-      <button class="btn" ng-click="cancel()">Cancel</button>
-    </div>
-  </div>
 
    </body>
   </html>

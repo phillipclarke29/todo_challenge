@@ -24,6 +24,18 @@ describe('To Do List', function() {
 
     var todos = element.all(by.repeater('todo in todoList.todos'));
     expect(todos.last().getText()).toEqual('This is a new todo');
+    expect(todos.get(2).getText()).toEqual('This is a new todo');
+  });
+
+  it('it allows you to mark a todo as complete', function(){
+
+    element(by.model('todoList.todoText')).sendKeys('This is a new todo');
+    element(by.css('[value="add"]')).click();
+    var todos = element.all(by.repeater('todo in todoList.todos'));
+    todos.get(2).element(by.css('input')).click();
+    var completedAmount = element.all(by.css('.complete-true'));
+    expect(completedAmount.count()).toEqual(1);
+    expect(completedAmount.getText()).toEqual(['This is a new todo']);
 
   });
 

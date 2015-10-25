@@ -3,8 +3,8 @@ describe('TodoListController', function() {
 
   var todoList;
   todoList.todos = [
-      {text:'learn angular', done:true},
-      {text:'build an angular app', done:false}];
+      {text:'complete this challenge', complete:true},
+      {text:'have a nice cup of rosie', complete:false}];
 
 
   beforeEach(inject(function($controller) {

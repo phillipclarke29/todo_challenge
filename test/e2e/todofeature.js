@@ -52,4 +52,11 @@ describe('To Do List', function() {
 
   });
 
+  it('it allows you to filter just completed todos', function(){
+    element(by.css('[value="filter"]')).click();
+    element(by.linkText('Complete')).click();
+    var todos = element.all(by.repeater('todo in todoList.todos'))
+    expect(todos.length).toEqual(1);
+  });
+
 });

@@ -31,7 +31,7 @@ describe('To Do List', function() {
 
     element(by.model('todoList.todoText')).sendKeys('This is a new todo');
     element(by.css('[value="add"]')).click();
-    var todos = element.all(by.repeater('todo in todoList.todos'));
+    var todos = element.all(by.repeater('todo in todoList.todos'))
     todos.get(2).element(by.css('input')).click();
     var completedAmount = element.all(by.css('.complete-true'));
     expect(completedAmount.count()).toEqual(1);

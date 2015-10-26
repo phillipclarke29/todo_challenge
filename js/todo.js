@@ -1,6 +1,7 @@
 angular.module('myApp', [])
 .controller('TodoListController', function() {
    var todoList = this;
+
    todoList.todos = [
      {text:'complete this challenge', complete:false},
      {text:'have a nice cup of rosie', complete:false}]

@@ -42,11 +42,12 @@ describe('To Do List', function() {
 
     element(by.model('todoList.todoText')).sendKeys('This is a new todo');
     element(by.css('[value="add"]')).click();
-    var todos = element.all(by.repeater('todo in todoList.todos'));
-    var todo = todos.get(2)
-    element(by.css('[value="update"]')).click();
-    element(by.model('newText')).sendKeys('This is an updated todo');
-    element(by.css('[value="update"]')).click();
+    var todo = element(by.cssContainingText('complete-false', 'This is a new todo'));
+    console.log(todo);
+    todo(by.css('[value="update"]')).click();
+    todo(by.model('newText')).sendKeys('This is an updated todo');
+    todo(by.css('[value="update"]')).click();
+    var todos = element.all(by.repeater('todo in todoList.todos'));s
     expect(todos.last().getText()).toEqual('This is an updated todo Update');
 
   });
